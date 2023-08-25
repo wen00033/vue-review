@@ -12,7 +12,7 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="navbar-collapse" id="navbarNav">
+      <div class="navbar-collapse collapse" id="navbarNav">
         <ul class="navbar-nav">
           <router-link
             class="me-5 mb-2 mb-lg-0"
@@ -73,26 +73,25 @@
                   >${{ item.price * item.stock }}
                   <small> ({{ item.price }}*{{ item.stock }}) </small>
                 </span>
-                <span :data-index="i">❌</span>
+                <span :data-index="i" @click="deleteItem" class="delete"
+                  >❌</span
+                >
               </li>
             </ul>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-            <button type="button" class="btn btn-primary">Save changes</button>
           </div>
         </div>
       </div>
     </div>
     <!-- ---------------------------- -->
   </nav>
-  <router-view />
+  <router-view
+    v-motion
+    :initial="{ opacity: 0, y: 100 }"
+    :enter="{ opacity: 1, y: 0, scale: 1 }"
+    :variants="{ custom: { scale: 2 } }"
+    :hovered="{ scale: 1.2 }"
+    :delay="200"
+  />
   <footer class="bg-success p-2">
     <div class="container-fluid">
       <div class="row justify-content-center"></div>
@@ -126,6 +125,13 @@ export default {
     );
     this.getUserOrder();
   },
+  computed: {
+    totalPrice() {
+      this.userOrder.forEach((item) => {
+        this.totalPrice1 += item.price * item.stock;
+      });
+    },
+  },
 
   methods: {
     getUserOrder() {
@@ -134,10 +140,19 @@ export default {
         this.userOrder = JSON.parse(userOrder);
       }
     },
+    deleteItem(e) {
+      const index = e.target.dataset.index;
+      this.userOrder.splice(index, 1);
+      localStorage.setItem("userOrder", JSON.stringify(this.userOrder));
+    },
   },
 };
 </script>
 <style>
+.delete {
+  cursor: pointer;
+}
+
 .buy-item {
   list-style: none;
   border-bottom: 1px solid #ccc;

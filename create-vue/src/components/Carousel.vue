@@ -1,5 +1,12 @@
 <template>
-  <div id="carouselExample" class="carousel slide">
+  <div
+    v-motion
+    :initial="{ opacity: 0, x: 100 }"
+    :enter="{ opacity: 1, x: 0, scale: 1 }"
+    :delay="200"
+    id="carouselExample"
+    class="carousel slide"
+  >
     <div class="carousel-inner">
       <div class="carousel-item active relative position-relative">
         <div class="promotion-content position-absolute">
