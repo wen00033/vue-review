@@ -58,6 +58,11 @@ export default {
 };
 </script>
 <style>
+.btn:hover {
+  transform: scale(1.2);
+  transition: all 100ms ease-in-out;
+}
+
 .list {
   display: grid;
   aspect-ratio: 1/1;
