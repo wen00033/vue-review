@@ -84,14 +84,7 @@
     </div>
     <!-- ---------------------------- -->
   </nav>
-  <router-view
-    v-motion
-    :initial="{ opacity: 0, y: 100 }"
-    :enter="{ opacity: 1, y: 0, scale: 1 }"
-    :variants="{ custom: { scale: 2 } }"
-    :hovered="{ scale: 1.2 }"
-    :delay="200"
-  />
+  <router-view />
   <footer class="bg-success p-2">
     <div class="container-fluid">
       <div class="row justify-content-center"></div>
@@ -115,7 +108,6 @@ export default {
       { id: 3, name: "Home", path: "/product", status: "" },
       { id: 1, name: "Contact", path: "/contact", status: "active" },
     ],
-    localStorageWatcher: localStorage.getItem("userOrder"),
     userOrder: [],
   }),
   created() {
