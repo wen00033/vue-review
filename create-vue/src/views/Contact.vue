@@ -1,8 +1,8 @@
 <template>
-  <div class="container">
+  <section class="container">
     <div class="row mb-5">
       <div class="col-md-8 col-xl-6 text-center mx-auto">
-        <p class="fw-bold text-success mb-2">Contacts</p>
+        <h1 class="fw-bold text-success mb-2">Contacts</h1>
         <h2 class="fw-bold">How you can reach us</h2>
       </div>
     </div>
@@ -123,6 +123,11 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
-<script></script>
+<style>
+.container {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+</style>

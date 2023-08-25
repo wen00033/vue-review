@@ -1,7 +1,7 @@
 <template>
   <Carousel />
   <div class="list">
-    <div v-for="product in products.products">
+    <div v-for="product in products">
       <div :key="product.id" class="card">
         <img
           :src="product.thumbnail"
@@ -40,9 +40,12 @@ export default {
   methods: {
     getProducts() {
       axios.get("https://dummyjson.com/products").then((res) => {
-        localStorage.setItem("products", JSON.stringify(res.data));
+        localStorage.setItem("products", JSON.stringify(res.data.products));
       });
     },
+  },
+  mounted() {
+    this.getProducts();
   },
   watch: {
     products: {
