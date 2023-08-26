@@ -34,7 +34,11 @@ export default {
     products: [],
   }),
   created() {
-    this.products = JSON.parse(localStorage.getItem("products"));
+    if (!localStorage.getItem("products")) {
+      return;
+    } else {
+      this.products = JSON.parse(localStorage.getItem("products"));
+    }
   },
   props: {},
   methods: {
@@ -45,7 +49,13 @@ export default {
     },
   },
   mounted() {
-    this.getProducts();
+    if ("products" in localStorage) {
+      this.products = JSON.parse(localStorage.getItem("products"));
+    } else {
+      axios.get("https://dummyjson.com/products").then((res) => {
+        this.products = res.data.products;
+      });
+    }
   },
   watch: {
     products: {
@@ -60,7 +70,7 @@ export default {
 <style>
 .btn:hover {
   transform: scale(1.2);
-  transition: all 100ms ease-in-out;
+  transition: all 300ms ease-in-out;
 }
 
 .list {

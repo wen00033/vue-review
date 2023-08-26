@@ -1,5 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { createApp } from "vue";
+import { MotionPlugin } from "@vueuse/motion";
 import "bootstrap/dist/js/bootstrap.js";
 import { createRouter, createWebHashHistory } from "vue-router";
 import App from "./App.vue";
@@ -8,7 +9,7 @@ import Products from "./views/Products.vue";
 import Product from "./views/Product.vue";
 import Contact from "./views/Contact.vue";
 
-const app = createApp(App);
+const app = createApp(App).use(MotionPlugin);
 
 const routes = [
   { path: "/", component: Products },

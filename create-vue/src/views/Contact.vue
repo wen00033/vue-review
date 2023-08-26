@@ -1,5 +1,11 @@
 <template>
-  <section class="container">
+  <section
+    class="container"
+    v-motion
+    :initial="{ opacity: 0, X: 100 }"
+    :enter="{ opacity: 1, x: 0, scale: 1 }"
+    :delay="200"
+  >
     <div class="row mb-5">
       <div class="col-md-8 col-xl-6 text-center mx-auto">
         <h1 class="fw-bold text-success mb-2">Contacts</h1>

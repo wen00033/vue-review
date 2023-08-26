@@ -12,7 +12,7 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="navbar-collapse collapse" id="navbarNav">
+      <div class="navbar-collapse collapsed collapse" id="navbarNav">
         <ul class="navbar-nav">
           <router-link
             class="me-5 mb-2 mb-lg-0"
@@ -27,11 +27,10 @@
         </ul>
       </div>
       <img
-        class="rounded-circle flex-shrink-0 me-3 fit-cover"
+        @click="getUserOrder"
+        class="rounded-circle click flex-shrink-0 me-3 fit-cover"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
-        type="button"
-        @click="() => getUserOrder()"
         width="50"
         height="50"
         src="https://i.pravatar.cc/150?img=1"
@@ -110,21 +109,6 @@ export default {
     ],
     userOrder: [],
   }),
-  created() {
-    this.$watch(
-      () => this.userOrder,
-      () => this.getUserOrder()
-    );
-    this.getUserOrder();
-  },
-  computed: {
-    totalPrice() {
-      this.userOrder.forEach((item) => {
-        this.totalPrice1 += item.price * item.stock;
-      });
-    },
-  },
-
   methods: {
     getUserOrder() {
       const userOrder = localStorage.getItem("userOrder");
@@ -141,8 +125,14 @@ export default {
 };
 </script>
 <style>
-.delete {
+.delete,
+.click {
   cursor: pointer;
+}
+
+.click:hover {
+  transition: all 300ms ease-in-out;
+  transform: scale(1.2);
 }
 
 .buy-item {

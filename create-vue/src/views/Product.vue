@@ -1,5 +1,11 @@
 <template>
-  <section class="card mb-3">
+  <section
+    class="card mb-3"
+    v-motion
+    :initial="{ opacity: 0, y: -100 }"
+    :enter="{ opacity: 1, y: 0, scale: 1 }"
+    :delay="200"
+  >
     <div class="row g-0">
       <div class="col-md-4">
         <img
@@ -48,7 +54,13 @@
   </section>
   <h2 class="title">See more...</h2>
   <!-- scroll x -->
-  <section class="relative-product">
+  <section
+    v-motion
+    :initial="{ opacity: 0, X: 100 }"
+    :enter="{ opacity: 1, x: 0, scale: 1 }"
+    :delay="200"
+    class="relative-product"
+  >
     <div v-for="product in relatedProducts" class="relative-product_item">
       <img class="product-image" :src="product.images[0]" alt="product" />
       <div class="relative-product-content">
